@@ -11,8 +11,19 @@ class TabsComponent extends HTMLElement {
   }
 
   render() {
+    // get template
+    const template = document.getElementById('tabs-component-template').content.cloneNode(true);
+    const tabsNav = template.querySelector('.tabs-nav');
+    const tabsPanel = template.querySelector('.tabs-panel');
+
     const tabNavItems = this.querySelectorAll('[slot="tab"]');
     const tabContents = this.querySelectorAll('[slot="content"]');
+
+    tabNavItems.forEach(navItem => tabsNav.appendChild(navItem));
+    tabContents.forEach(content => tabsPanel.appendChild(content));
+
+    // append template
+    this.appendChild(template);
 
     tabNavItems.forEach(navItem => {
       navItem.addEventListener('click', function () {
