@@ -8,6 +8,7 @@ class TabsComponent extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.handleTabNavClick();
   }
 
   render() {
@@ -23,6 +24,8 @@ class TabsComponent extends HTMLElement {
         const tabsConfig = JSON.parse(tabsConfigScript.textContent);
 
         tabsConfig.tabs.forEach((tab, index) => {
+          console.log('tab: ', tab);
+
           const tabNavItem = document.createElement('div');
           tabNavItem.classList.add('tab-nav-item');
           tabNavItem.textContent = tab.label;
@@ -31,10 +34,17 @@ class TabsComponent extends HTMLElement {
           // append tab nav item
           tabsNav.appendChild(tabNavItem);
 
+          // tab content
           const tabContent = document.createElement('div');
+
           tabContent.classList.add('tab-content');
           tabContent.dataset['key'] = index;
-          tabContent.textContent = tab.content;
+
+          // add title and tab content
+          tabContent.innerHTML = `
+          <h5 class="tab-title">${tab.title}</h5>
+          <p>${tab.content}</p>
+          `;
 
           // append tab content
           tabsPanel.appendChild(tabContent);
@@ -49,9 +59,9 @@ class TabsComponent extends HTMLElement {
           <code>
             {
               "tabs": [
-                { "label": "Tab 1", "content": "Content for Tab 1" },
-                { "label": "Tab 2", "content": "Content for Tab 2" },
-                { "label": "Tab 3", "content": "Content for Tab 3" }
+                { "label": "Tab 1", "title": "Title 1", "content": "Content for Tab 1" },
+                { "label": "Tab 2", "title": "Title 1", "content": "Content for Tab 2" },
+                { "label": "Tab 3", "title": "Title 1", "content": "Content for Tab 3" }
               ]
             }
           </code>
@@ -65,6 +75,15 @@ class TabsComponent extends HTMLElement {
     // append template
     this.appendChild(template);
 
+    // Set the first tab as active by default
+    const tabNavItems = this.querySelectorAll('.tab-nav-item');
+    const tabContents = this.querySelectorAll('.tab-content');
+
+    tabNavItems[0].classList.add("active");
+    tabContents[0].classList.add("active");
+  }
+
+  handleTabNavClick() {
     const tabNavItems = this.querySelectorAll('.tab-nav-item');
     const tabContents = this.querySelectorAll('.tab-content');
 
@@ -79,10 +98,6 @@ class TabsComponent extends HTMLElement {
         document.querySelector(`.tab-content[data-key='${tabKey}']`).classList.add("active");
       });
     });
-
-    // Set the first tab as active by default
-    tabNavItems[0].classList.add("active");
-    tabContents[0].classList.add("active");
   }
 }
 
