@@ -6,22 +6,20 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Tab Challenge</title>
 		<link rel="stylesheet" href="style.css">
-		<script src="tabs.js"></script>
+		<script src="tabs.js" defer></script>
 	</head>
 	<body>
 		<p>Some tabs here 🗂</p>
 
 		<tabs-component>
-			<ul class="tabs-nav">
-				<li class="tab-nav-item" data-tab-key="1">Tab 1</li>
-				<li class="tab-nav-item" data-tab-key="2">Tab 2</li>
-				<li class="tab-nav-item" data-tab-key="3">Tab 3</li>
-			</ul>
+			<div class="tab-nav-item" slot="tab" data-tab-key="1">Tab 1</div>
+			<div class="tab-nav-item" slot="tab" data-tab-key="2">Tab 2</div>
+			<div class="tab-nav-item" slot="tab" data-tab-key="3">Tab 3</div>
 			
 			<div class="tabs-panel">
-				<div class="tab-content" data-content-key="1">Content for Tab 1</div>
-				<div class="tab-content" data-content-key="2">Content for Tab 2</div>
-				<div class="tab-content" data-content-key="3">Content for Tab 3</div>
+				<div class="tab-content" slot="content" data-content-key="1">Content for Tab 1</div>
+				<div class="tab-content" slot="content" data-content-key="2">Content for Tab 2</div>
+				<div class="tab-content" slot="content" data-content-key="3">Content for Tab 3</div>
 			</div>
 		</tabs-component>
 	</body>
