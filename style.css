@@ -1,6 +1,21 @@
 /* style.css */
 
-tabs-component {}
+/* declare css variables */
+:root {
+  --white: #FFFFFF;
+  --bg-color: #979797;
+  --tab-bg-Color: #E2E8EB;
+  --tab-text-Color: #032F61;
+  --tab-border-color-active: #06A7A9;
+}
+
+body {
+  background-color: var(--bg-color);
+}
+
+tabs-component {
+  width: 100%;
+}
 
 .tabs-nav {
   display: flex;
@@ -10,19 +25,36 @@ tabs-component {}
 }
 
 .tab-nav-item {
+  background-color: var(--tab-bg-Color);
+  padding: 1rem 1rem;
+  font-size: 1rem;
+  color: var(--tab-text-Color);
   cursor: pointer;
 }
 
 .tab-nav-item.active {
-  border: 1px solid black;
+  background-color: var(--white);
+  border-top: 4px solid var(--tab-border-color-active);
 }
 
 .tabs-panel {}
 
 .tab-content {
   display: none;
+  padding: 2rem 2rem;
+  background-color: var(--white);
+  color: var(--tab-text-Color);
 }
 
 .tab-content.active {
   display: block;
+}
+
+.tab-content .tab-title {
+  font-size: 20px;
+}
+
+.tab-content p {
+  font-size: 1rem;
+  line-height: 24px;
 }
