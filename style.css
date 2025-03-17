@@ -1,0 +1,28 @@
+/* style.css */
+
+tabs-component {}
+
+.tabs-nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-nav-item {
+  cursor: pointer;
+}
+
+.tab-nav-item.active {
+  border: 1px solid black;
+}
+
+.tabs-panel {}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
